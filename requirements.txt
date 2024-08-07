@@ -1,0 +1,10 @@
+Flask
+ldap3
+numpy
+pandas
+psycopg2
+PyJWT
+pymssql
+setuptools
+SQLAlchemy
+gunicorn

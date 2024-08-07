@@ -1,0 +1,73 @@
+{% extends "base_template/v2/baseV2.html" %}
+{% block title %}Power Uploader{% endblock title %}
+{% block containerfluid %}
+<div class="row">
+    <div class="col-md-4">
+        <div class="box">
+            <div class="box-header with-border">
+                <h3 class="box-title">Uploader {{ options_ }}</h3>
+            </div>
+            <form role="form" action="{{ url_for('poweruploader.upload_to_table') }}" method="post" enctype="multipart/form-data">
+                <div class="box-body">
+                    <div class="form-group">
+                        <label for="dtbase">Select Table</label>
+                        <select class="form-control" name="dtbase" id="dtbase">
+                            {% for opt in options %}
+                            <option value="{{ opt }}">{{ opt }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="file">File input</label>
+                        <input type="file" name="file" id="file" accept=".csv">
+
+                        <p class="help-block">CSV File ONLY.</p>
+                    </div>
+                </div>
+                <div class="box-footer">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="col-md-8">
+        <div class="box">
+            <div class="box-header with-border">
+                <h3 class="box-title">Tables List</h3>
+            </div>
+            <div class="box-body">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th style="width: 5rem;">No</th>
+                            <th>Table Name</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for row in options %}
+                        <tr>
+                            <td>{{ loop.index }}</td>
+                            <td>{{ row }}</td>
+                            <td><a href="{{ url_for('poweruploader.table_view', table=row) }}">View</a></td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- notif -->
+{% with notif = get_flashed_messages() %}
+{% if True == notif[0] %}
+<script>
+    alert("Success !")
+</script>
+{% elif False == notif[0] %}
+<script>
+    alert("Error !")
+</script>
+{% endif %}
+{% endwith %}
+{% endblock containerfluid %}

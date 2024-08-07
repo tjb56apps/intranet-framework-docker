@@ -1,0 +1,54 @@
+{% extends "base_template/v2/baseV2.html" %}
+{% block title %}File Uploader{% endblock title %}
+{% block containerfluid %}
+<div class="row">
+    <div class="col-md-3 col-sm-6 col-xs-12">
+        <div class="info-box">
+            <span class="info-box-icon bg-aqua">
+                <i class="fa fa-file"></i>
+            </span>
+            <div class="info-box-content">
+                <span class="info-box-text"></span>
+                <span class="info-box-number"></span>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3 col-sm-6 col-xs-12">
+        <div class="info-box">
+            <span class="info-box-icon bg-aqua">
+                <i class="fa fa-envelope-o"></i>
+            </span>
+        </div>
+    </div>
+    <div class="col-md-3 col-sm-6 col-xs-12">
+        <div class="info-box">
+            <span class="info-box-icon bg-yellow">
+                <i class="fa fa-files-o"></i>
+            </span>
+            <div class="info-box-content">
+                <span class="info-box-text"></span>
+                <span class="info-box-number"></span>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3 col-sm-6 col-xs-12">
+        <div class="info-box">
+            <span class="info-box-icon bg-yellow">
+                <i class="fa fa-files-o"></i>
+            </span>
+        </div>
+    </div>
+</div>
+<!-- notif -->
+{% with notif = get_flashed_messages() %}
+{% if True == notif[0] %}
+<script>
+    alert("Success !")
+</script>
+{% elif False == notif[0] %}
+<script>
+    alert("Error !")
+</script>
+{% endif %}
+{% endwith %}
+{% endblock containerfluid %}
